@@ -79,46 +79,54 @@ def mergeMatrix(up_left,up_mid,up_right,mid_left,mid_mid,mid_right,bot_left,bot_
 	return result
 
 def getMusic(matrix):
-
-	music_array = numpy.array(9, dtype='s32')
+	music_array = numpy.empty(9, dtype='S32')
 	i = 0
-	for row in matrix:
-		if (row[2] < 10):
-			if (0 < row[1] <= 20):
-				music_array[i] = 'Sheetmusic\\Drone1'
-			if (20 < row[1] <= 40):
-				music_array[i] = 'Sheetmusic\\Drone2'
-			if (40 < row[1] <= 60):
-				music_array[i] = 'Sheetmusic\\Drone3'
-			if (60 < row[1] <= 80):
-				music_array[i] = 'Sheetmusic\\Drone4'
-			if (80 < row[1] <= 100):
-				music_array[i] = 'Sheetmusic\\Drone5'
+	for x in matrix:
+		if (x[2] < 10):
+			if (0 < x[1] <= 20):
+				music_array[i] = 'Sheetmusic\\Drone1.jpg'
+			if (20 < x[1] <= 40):
+				music_array[i] = 'Sheetmusic\\Drone2.jpg'
+			if (40 < x[1] <= 60):
+				music_array[i] = 'Sheetmusic\\Drone3.jpg'
+			if (60 < x[1] <= 80):
+				music_array[i] = 'Sheetmusic\\Drone4.jpg'
+			if (80 < x[1] <= 100):
+				music_array[i] = 'Sheetmusic\\Drone5.jpg'
 		else:
-			if (0 < row[0] <= 15 || 350 < row[0] <= 360):
-				music_array[i] = 'Sheetmusic\\RED'
-			if (15 < row[0] <= 45):
-				music_array[i] = 'Sheetmusic\\ORANGE'
-			if (45 < row[0] <= 70):
-				music_array[i] = 'Sheetmusic\\YELLOW'
-			if (70 < row[0] <= 90):
-				music_array[i] = 'Sheetmusic\\PEA'
-			if (90 < row[0] <= 155):
-				music_array[i] = 'Sheetmusic\\GREEN'
-			if (155 < row[0] <= 195):
-				music_array[i] = 'Sheetmusic\\CYAN'
-			if (195 < row[0] <= 240):
-				music_array[i] = 'Sheetmusic\\BLUE'
-			if (240 < row[0] <= 270):
-				music_array[i] = 'Sheetmusic\\VIOLET'
-			if (270 < row[0] <= 290):
-				music_array[i] = 'Sheetmusic\\PURPLE'
-			if (290 < row[0] <= 350):
-				music_array[i] = 'Sheetmusic\\PINK'
-		i++
-	# up_left = music_array[0]
-	# up_mid = music_array[1]
-	mergeMatrix(music_array)
+			if (0 < x[0] <= 15 or 350 < x[0] <= 360):
+				music_array[i] = 'Sheetmusic\\RED.jpg'
+			if (15 < x[0] <= 45):
+				music_array[i] = 'Sheetmusic\\ORANGE.jpg'
+			if (45 < x[0] <= 70):
+				music_array[i] = 'Sheetmusic\\YELLOW.jpg'
+			if (70 < x[0] <= 90):
+				music_array[i] = 'Sheetmusic\\PEA.jpg'
+			if (90 < x[0] <= 155):
+				music_array[i] = 'Sheetmusic\\GREEN.jpg'
+			if (155 < x[0] <= 195):
+				music_array[i] = 'Sheetmusic\\CYAN.jpg'
+			if (195 < x[0] <= 240):
+				music_array[i] = 'Sheetmusic\\BLUE.jpg'
+			if (240 < x[0] <= 270):
+				music_array[i] = 'Sheetmusic\\VIOLET.jpg'
+			if (270 < x[0] <= 290):
+				music_array[i] = 'Sheetmusic\\PURPLE.jpg'
+			if (290 < x[0] <= 350):
+				music_array[i] = 'Sheetmusic\\PINK.jpg'
+		# print(i)
+		# print('music_array[' + str(i) + '] = ' + music_array[i])
+		i = i+1
+	up_left = music_array[0]
+	up_mid = music_array[1]
+	up_right = music_array[2]
+	mid_left = music_array[3]
+	mid_mid = music_array[4]
+	mid_right = music_array[5]
+	bot_left = music_array[6]
+	bot_mid = music_array[7]
+	bot_right = music_array[8]
+	mergeMatrix(up_left,up_mid,up_right,mid_left,mid_mid,mid_right,bot_left,bot_mid,bot_right)
 	return
 	
 
@@ -151,8 +159,3 @@ print(colors)
 # music_matrix = colors.reshape(3,3,3)
 # print(music_matrix)
 getMusic(colors)
-
-# mergeMatrix('Images\\Figure_1.png', 'Images\\Figure_2.png', 'Images\\test.jpg', 
-# 	'Images\\Figure_1.png', 'Images\\Figure_2.png', 'Images\\test.jpg', 
-# 	'Images\\Figure_1.png', 'Images\\Figure_2.png', 'Images\\test.jpg')
-
