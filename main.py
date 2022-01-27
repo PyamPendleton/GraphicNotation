@@ -128,34 +128,20 @@ def getMusic(matrix):
 	bot_right = music_array[8]
 	mergeMatrix(up_left,up_mid,up_right,mid_left,mid_mid,mid_right,bot_left,bot_mid,bot_right)
 	return
-	
 
-##################
-##################
 
-# Warm -> Cool = Articulations
-# Cool colors = high, airy texture ()
-# Warm colors = low, sonorous texture ()
-# White -> Black = Drones
-# Drone players keep time
-# Bright colors = sparse texture
-# Dark colors = dense texture
 
-#######
-# HSV #
-# 
-# Greyscale occurs when S = 0
-#  - In this case, H controls nothing, and V controls brightness
-#  - Create a divide to round greyscale-adjacent entries
-# 	  - If S < 10, S = 0
-#     - Top 2 rows 
-#  - Sat. or more like brightness, and val. is more like lightness
-# 
-# 
+
+#####################################################################
+# HSV                                                               #
+# Greyscale occurs when S = 0                                       #
+#  - In this case, H controls nothing, and V controls brightness    #
+#  - Create a divide to round greyscale-adjacent entries            #
+# 	  - If S < 10, S = 0                                            #
+#     - Top 2 rows                                                  #
+#  - Sat. or more like brightness, and val. is more like lightness  #
+#####################################################################
 
 colors = numpy.array(get_colors(get_image('Images\\httyd.jpg'), 9))
-print(colors)
-# print('\n')
-# music_matrix = colors.reshape(3,3,3)
-# print(music_matrix)
+print(colors.reshape(3,3,3))
 getMusic(colors)
