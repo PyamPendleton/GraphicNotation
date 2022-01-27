@@ -26,7 +26,7 @@ def get_colors(image, number_of_colors):
 	rgb_colors = [ordered_colors[i] for i in counts.keys()]
 	rgb = numpy.array(rgb_colors, int)
 	hsv = matplotlib.colors.rgb_to_hsv(rgb/255)
-	hsv = numpy.column_stack((hsv[:,0]*180, hsv[:,1]*255, hsv[:,2]*255))
+	hsv = numpy.column_stack((hsv[:,0]*360, hsv[:,1]*255, hsv[:,2]*255))
 	hsv = numpy.round(hsv, decimals=0)
 	hsv = hsv.astype(int)
 	return hsv
@@ -79,22 +79,46 @@ def mergeMatrix(up_left,up_mid,up_right,mid_left,mid_mid,mid_right,bot_left,bot_
 	return result
 
 def getMusic(matrix):
+
+	music_array = numpy.array(9, dtype='s32')
+	i = 0
 	for row in matrix:
-		
-
-
-
-	up_left = matrix[0]
-	up_mid = matrix[1]
-	up_right = matrix[2]
-	mid_left = matrix[3]
-	mid_mid = matrix[4]
-	mid_right = matrix[5]
-	bot_left = matrix[6]
-	bot_mid = matrix[7]
-	bot_right = matrix[8]
-
-	mergeMatrix(up_left,up_mid,up_right,mid_left,mid_mid,mid_right,bot_left,bot_mid,bot_right)
+		if (row[2] < 10):
+			if (0 < row[1] <= 20):
+				music_array[i] = 'Sheetmusic\\Drone1'
+			if (20 < row[1] <= 40):
+				music_array[i] = 'Sheetmusic\\Drone2'
+			if (40 < row[1] <= 60):
+				music_array[i] = 'Sheetmusic\\Drone3'
+			if (60 < row[1] <= 80):
+				music_array[i] = 'Sheetmusic\\Drone4'
+			if (80 < row[1] <= 100):
+				music_array[i] = 'Sheetmusic\\Drone5'
+		else:
+			if (0 < row[0] <= 15 || 350 < row[0] <= 360):
+				music_array[i] = 'Sheetmusic\\RED'
+			if (15 < row[0] <= 45):
+				music_array[i] = 'Sheetmusic\\ORANGE'
+			if (45 < row[0] <= 70):
+				music_array[i] = 'Sheetmusic\\YELLOW'
+			if (70 < row[0] <= 90):
+				music_array[i] = 'Sheetmusic\\PEA'
+			if (90 < row[0] <= 155):
+				music_array[i] = 'Sheetmusic\\GREEN'
+			if (155 < row[0] <= 195):
+				music_array[i] = 'Sheetmusic\\CYAN'
+			if (195 < row[0] <= 240):
+				music_array[i] = 'Sheetmusic\\BLUE'
+			if (240 < row[0] <= 270):
+				music_array[i] = 'Sheetmusic\\VIOLET'
+			if (270 < row[0] <= 290):
+				music_array[i] = 'Sheetmusic\\PURPLE'
+			if (290 < row[0] <= 350):
+				music_array[i] = 'Sheetmusic\\PINK'
+		i++
+	# up_left = music_array[0]
+	# up_mid = music_array[1]
+	mergeMatrix(music_array)
 	return
 	
 
@@ -123,11 +147,10 @@ def getMusic(matrix):
 
 colors = numpy.array(get_colors(get_image('Images\\httyd.jpg'), 9))
 print(colors)
-print('\n')
-music_matrix = colors.reshape(3,3,3)
-print(music_matrix)
-
-getMusic(music_matrix)
+# print('\n')
+# music_matrix = colors.reshape(3,3,3)
+# print(music_matrix)
+getMusic(colors)
 
 # mergeMatrix('Images\\Figure_1.png', 'Images\\Figure_2.png', 'Images\\test.jpg', 
 # 	'Images\\Figure_1.png', 'Images\\Figure_2.png', 'Images\\test.jpg', 
