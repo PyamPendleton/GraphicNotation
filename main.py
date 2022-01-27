@@ -2,7 +2,7 @@ import cv2
 import numpy
 from sklearn.cluster import KMeans
 from collections import Counter
-from PIL import Image
+from PIL import Image, ImageTk
 import matplotlib
 import colorsys
 
@@ -78,45 +78,81 @@ def mergeMatrix(up_left,up_mid,up_right,mid_left,mid_mid,mid_right,bot_left,bot_
 	result.save('Output\\FullScore.jpg')
 	return result
 
-def getMusic(matrix):
+def getMusic(matrix, debug):
 	music_array = numpy.empty(9, dtype='S32')
-	i = 0
-	for x in matrix:
-		if (x[2] < 10):
-			if (0 < x[1] <= 20):
-				music_array[i] = 'Sheetmusic\\Drone1.jpg'
-			if (20 < x[1] <= 40):
-				music_array[i] = 'Sheetmusic\\Drone2.jpg'
-			if (40 < x[1] <= 60):
-				music_array[i] = 'Sheetmusic\\Drone3.jpg'
-			if (60 < x[1] <= 80):
-				music_array[i] = 'Sheetmusic\\Drone4.jpg'
-			if (80 < x[1] <= 100):
-				music_array[i] = 'Sheetmusic\\Drone5.jpg'
-		else:
-			if (0 < x[0] <= 15 or 350 < x[0] <= 360):
-				music_array[i] = 'Sheetmusic\\RED.jpg'
-			if (15 < x[0] <= 45):
-				music_array[i] = 'Sheetmusic\\ORANGE.jpg'
-			if (45 < x[0] <= 70):
-				music_array[i] = 'Sheetmusic\\YELLOW.jpg'
-			if (70 < x[0] <= 90):
-				music_array[i] = 'Sheetmusic\\PEA.jpg'
-			if (90 < x[0] <= 155):
-				music_array[i] = 'Sheetmusic\\GREEN.jpg'
-			if (155 < x[0] <= 195):
-				music_array[i] = 'Sheetmusic\\CYAN.jpg'
-			if (195 < x[0] <= 240):
-				music_array[i] = 'Sheetmusic\\BLUE.jpg'
-			if (240 < x[0] <= 270):
-				music_array[i] = 'Sheetmusic\\VIOLET.jpg'
-			if (270 < x[0] <= 290):
-				music_array[i] = 'Sheetmusic\\PURPLE.jpg'
-			if (290 < x[0] <= 350):
-				music_array[i] = 'Sheetmusic\\PINK.jpg'
-		# print(i)
-		# print('music_array[' + str(i) + '] = ' + music_array[i])
-		i = i+1
+	if(debug):
+		i = 0
+		for x in matrix:
+			if (x[1] < 30):
+				if (0 < x[2] <= 20):
+					music_array[i] = 'Sheetmusic\\dronea.jpg'
+				if (20 < x[2] <= 40):
+					music_array[i] = 'Sheetmusic\\droneb.jpg'
+				if (40 < x[2] <= 60):
+					music_array[i] = 'Sheetmusic\\dronec.jpg'
+				if (60 < x[2] <= 80):
+					music_array[i] = 'Sheetmusic\\droned.jpg'
+				if (80 < x[2] <= 100):
+					music_array[i] = 'Sheetmusic\\dronee.jpg'
+			else:
+				if (0 < x[0] <= 15 or 350 < x[0] <= 360):
+					music_array[i] = 'Sheetmusic\\RED.jpg'
+				if (15 < x[0] <= 45):
+					music_array[i] = 'Sheetmusic\\ORANGE.jpg'
+				if (45 < x[0] <= 70):
+					music_array[i] = 'Sheetmusic\\YELLOW.jpg'
+				if (70 < x[0] <= 90):
+					music_array[i] = 'Sheetmusic\\PEA.jpg'
+				if (90 < x[0] <= 155):
+					music_array[i] = 'Sheetmusic\\GREEN.jpg'
+				if (155 < x[0] <= 195):
+					music_array[i] = 'Sheetmusic\\CYAN.jpg'
+				if (195 < x[0] <= 240):
+					music_array[i] = 'Sheetmusic\\BLUE.jpg'
+				if (240 < x[0] <= 270):
+					music_array[i] = 'Sheetmusic\\VIOLET.jpg'
+				if (270 < x[0] <= 290):
+					music_array[i] = 'Sheetmusic\\PURPLE.jpg'
+				if (290 < x[0] <= 350):
+					music_array[i] = 'Sheetmusic\\PINK.jpg'
+			i = i+1
+	# else:
+	# 	i = 0
+	# 	for x in matrix:
+	# 		if (x[1] < 15):
+	# 			if (0 < x[2] <= 20):
+	# 				music_array[i] = 'Sheetmusic\\Drone1_music.jpg'
+	# 			if (20 < x[2] <= 40):
+	# 				music_array[i] = 'Sheetmusic\\Drone2_music.jpg'
+	# 			if (40 < x[2] <= 60):
+	# 				music_array[i] = 'Sheetmusic\\Drone3_music.jpg'
+	# 			if (60 < x[2] <= 80):
+	# 				music_array[i] = 'Sheetmusic\\Drone4_music.jpg'
+	# 			if (80 < x[2] <= 100):
+	# 				music_array[i] = 'Sheetmusic\\Drone5_music.jpg'
+	# 		else:
+	# 			if (0 < x[0] <= 15 or 350 < x[0] <= 360):
+	# 				music_array[i] = 'Sheetmusic\\RED_music.jpg'
+	# 			if (15 < x[0] <= 45):
+	# 				music_array[i] = 'Sheetmusic\\ORANGE_music.jpg'
+	# 			if (45 < x[0] <= 70):
+	# 				music_array[i] = 'Sheetmusic\\YELLOW_music.jpg'
+	# 			if (70 < x[0] <= 90):
+	# 				music_array[i] = 'Sheetmusic\\PEA_music.jpg'
+	# 			if (90 < x[0] <= 155):
+	# 				music_array[i] = 'Sheetmusic\\GREEN_music.jpg'
+	# 			if (155 < x[0] <= 195):
+	# 				music_array[i] = 'Sheetmusic\\CYAN_music.jpg'
+	# 			if (195 < x[0] <= 240):
+	# 				music_array[i] = 'Sheetmusic\\BLUE_music.jpg'
+	# 			if (240 < x[0] <= 270):
+	# 				music_array[i] = 'Sheetmusic\\VIOLET_music.jpg'
+	# 			if (270 < x[0] <= 290):
+	# 				music_array[i] = 'Sheetmusic\\PURPLE_music.jpg'
+	# 			if (290 < x[0] <= 350):
+	# 				music_array[i] = 'Sheetmusic\\PINK_music.jpg'
+	# 		i = i+1
+
 	up_left = music_array[0]
 	up_mid = music_array[1]
 	up_right = music_array[2]
@@ -142,6 +178,7 @@ def getMusic(matrix):
 #  - Sat. or more like brightness, and val. is more like lightness  #
 #####################################################################
 
-colors = numpy.array(get_colors(get_image('Images\\httyd.jpg'), 9))
+colors = numpy.array(get_colors(get_image('Images\\test.jpg'), 9))
 print(colors.reshape(3,3,3))
-getMusic(colors)
+
+getMusic(colors, True)
