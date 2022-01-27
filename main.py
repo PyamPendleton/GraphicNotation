@@ -3,6 +3,8 @@ import numpy
 from sklearn.cluster import KMeans
 from collections import Counter
 from PIL import Image
+import matplotlib
+import colorsys
 
 
 def get_image(image_path):
@@ -23,8 +25,11 @@ def get_colors(image, number_of_colors):
 	ordered_colors = [center_colors[i] for i in counts.keys()]
 	rgb_colors = [ordered_colors[i] for i in counts.keys()]
 	rgb = numpy.array(rgb_colors, int)
-	
-	return rgb
+	hsv = matplotlib.colors.rgb_to_hsv(rgb/255)
+	hsv = numpy.column_stack((hsv[:,0]*180, hsv[:,1]*255, hsv[:,2]*255))
+	hsv = numpy.round(hsv, decimals=0)
+	hsv = hsv.astype(int)
+	return hsv
 
 def merge_horizontal(file1, file2, file3):
     image1 = Image.open(file1)
@@ -73,7 +78,24 @@ def mergeMatrix(up_left,up_mid,up_right,mid_left,mid_mid,mid_right,bot_left,bot_
 	result.save('Output\\FullScore.jpg')
 	return result
 
-def getMusic(rgb_matrix):
+def getMusic(matrix):
+	for row in matrix:
+		
+
+
+
+	up_left = matrix[0]
+	up_mid = matrix[1]
+	up_right = matrix[2]
+	mid_left = matrix[3]
+	mid_mid = matrix[4]
+	mid_right = matrix[5]
+	bot_left = matrix[6]
+	bot_mid = matrix[7]
+	bot_right = matrix[8]
+
+	mergeMatrix(up_left,up_mid,up_right,mid_left,mid_mid,mid_right,bot_left,bot_mid,bot_right)
+	return
 	
 
 ##################
@@ -87,13 +109,27 @@ def getMusic(rgb_matrix):
 # Bright colors = sparse texture
 # Dark colors = dense texture
 
-# Lighter = equal, large values
-# Darker = equal, low values
-
+#######
+# HSV #
+# 
+# Greyscale occurs when S = 0
+#  - In this case, H controls nothing, and V controls brightness
+#  - Create a divide to round greyscale-adjacent entries
+# 	  - If S < 10, S = 0
+#     - Top 2 rows 
+#  - Sat. or more like brightness, and val. is more like lightness
+# 
+# 
 
 colors = numpy.array(get_colors(get_image('Images\\httyd.jpg'), 9))
-print(colors.reshape(3,3,3))
+print(colors)
+print('\n')
+music_matrix = colors.reshape(3,3,3)
+print(music_matrix)
 
-mergeMatrix('Images\\Figure_1.png', 'Images\\Figure_2.png', 'Images\\test.jpg', 
-	'Images\\Figure_1.png', 'Images\\Figure_2.png', 'Images\\test.jpg', 
-	'Images\\Figure_1.png', 'Images\\Figure_2.png', 'Images\\test.jpg')
+getMusic(music_matrix)
+
+# mergeMatrix('Images\\Figure_1.png', 'Images\\Figure_2.png', 'Images\\test.jpg', 
+# 	'Images\\Figure_1.png', 'Images\\Figure_2.png', 'Images\\test.jpg', 
+# 	'Images\\Figure_1.png', 'Images\\Figure_2.png', 'Images\\test.jpg')
+
