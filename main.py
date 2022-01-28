@@ -176,7 +176,7 @@ def getMusic(matrix, debug):
 #  - Sat. or more like brightness, and val. is more like lightness  #
 #####################################################################
 
-colors = numpy.array(get_colors(get_image('Images\\httyd.jpg'), 9))
+colors = numpy.array(get_colors(get_image('httyd\\test.jpg'), 9))
 print(colors.reshape(3,3,3))
 
-getMusic(colors, False)
+getMusic(colors, True)
