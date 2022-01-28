@@ -32,9 +32,9 @@ def get_colors(image, number_of_colors):
 	return hsv
 
 def merge_horizontal(file1, file2, file3):
-    image1 = open(file1)
-    image2 = open(file2)
-    image3 = open(file3)
+    image1 = Image.open(file1)
+    image2 = Image.open(file2)
+    image3 = Image.open(file3)
 
     (width1, height1) = image1.size
     (width2, height2) = image2.size
@@ -50,9 +50,9 @@ def merge_horizontal(file1, file2, file3):
     result.save('output.jpg')
     return result
 def merge_vertical(file1, file2, file3):
-    image1 = open(file1)
-    image2 = open(file2)
-    image3 = open(file3)
+    image1 = Image.open(file1)
+    image2 = Image.open(file2)
+    image3 = Image.open(file3)
 
     (width1, height1) = image1.size
     (width2, height2) = image2.size
@@ -83,7 +83,7 @@ def getMusic(matrix, debug):
 	if(debug):
 		i = 0
 		for x in matrix:
-			if (x[1] < 30):
+			if (x[1] < 1):
 				if (0 < x[2] <= 25):
 					music_array[i] = 'Sheetmusic\\dronea.jpg'
 				if (25 < x[2] <= 50):
@@ -114,42 +114,42 @@ def getMusic(matrix, debug):
 				if (290 < x[0] <= 350):
 					music_array[i] = 'Sheetmusic\\PINK.jpg'
 			i = i+1
-	# else:
-	# 	i = 0
-	# 	for x in matrix:
-	# 		if (x[1] < 15):
-	# 			if (0 < x[2] <= 20):
-	# 				music_array[i] = 'Sheetmusic\\Drone1_music.jpg'
-	# 			if (20 < x[2] <= 40):
-	# 				music_array[i] = 'Sheetmusic\\Drone2_music.jpg'
-	# 			if (40 < x[2] <= 60):
-	# 				music_array[i] = 'Sheetmusic\\Drone3_music.jpg'
-	# 			if (60 < x[2] <= 80):
-	# 				music_array[i] = 'Sheetmusic\\Drone4_music.jpg'
-	# 			if (80 < x[2] <= 100):
-	# 				music_array[i] = 'Sheetmusic\\Drone5_music.jpg'
-	# 		else:
-	# 			if (0 < x[0] <= 15 or 350 < x[0] <= 360):
-	# 				music_array[i] = 'Sheetmusic\\RED_music.jpg'
-	# 			if (15 < x[0] <= 45):
-	# 				music_array[i] = 'Sheetmusic\\ORANGE_music.jpg'
-	# 			if (45 < x[0] <= 70):
-	# 				music_array[i] = 'Sheetmusic\\YELLOW_music.jpg'
-	# 			if (70 < x[0] <= 90):
-	# 				music_array[i] = 'Sheetmusic\\PEA_music.jpg'
-	# 			if (90 < x[0] <= 155):
-	# 				music_array[i] = 'Sheetmusic\\GREEN_music.jpg'
-	# 			if (155 < x[0] <= 195):
-	# 				music_array[i] = 'Sheetmusic\\CYAN_music.jpg'
-	# 			if (195 < x[0] <= 240):
-	# 				music_array[i] = 'Sheetmusic\\BLUE_music.jpg'
-	# 			if (240 < x[0] <= 270):
-	# 				music_array[i] = 'Sheetmusic\\VIOLET_music.jpg'
-	# 			if (270 < x[0] <= 290):
-	# 				music_array[i] = 'Sheetmusic\\PURPLE_music.jpg'
-	# 			if (290 < x[0] <= 350):
-	# 				music_array[i] = 'Sheetmusic\\PINK_music.jpg'
-	# 		i = i+1
+	else:
+		i = 0
+		for x in matrix:
+			if (x[1] < 1):
+				if (0 < x[2] <= 20):
+					music_array[i] = 'Sheetmusic\\drone1_music.png'
+				if (20 < x[2] <= 40):
+					music_array[i] = 'Sheetmusic\\drone2_music.png'
+				if (40 < x[2] <= 60):
+					music_array[i] = 'Sheetmusic\\drone3_music.png'
+				if (60 < x[2] <= 80):
+					music_array[i] = 'Sheetmusic\\drone4_music.png'
+				if (80 < x[2] <= 100):
+					music_array[i] = 'Sheetmusic\\drone5_music.png'
+			else:
+				if (0 < x[0] <= 15 or 350 < x[0] <= 360):
+					music_array[i] = 'Sheetmusic\\RED_music.png'
+				if (15 < x[0] <= 45):
+					music_array[i] = 'Sheetmusic\\ORANGE_music.png'
+				if (45 < x[0] <= 70):
+					music_array[i] = 'Sheetmusic\\YELLOW_music.png'
+				if (70 < x[0] <= 90):
+					music_array[i] = 'Sheetmusic\\PEA_music.png'
+				if (90 < x[0] <= 155):
+					music_array[i] = 'Sheetmusic\\GREEN_music.png'
+				if (155 < x[0] <= 195):
+					music_array[i] = 'Sheetmusic\\CYAN_music.png'
+				if (195 < x[0] <= 240):
+					music_array[i] = 'Sheetmusic\\BLUE_music.png'
+				if (240 < x[0] <= 270):
+					music_array[i] = 'Sheetmusic\\VIOLET_music.png'
+				if (270 < x[0] <= 290):
+					music_array[i] = 'Sheetmusic\\PURPLE_music.png'
+				if (290 < x[0] <= 350):
+					music_array[i] = 'Sheetmusic\\PINK_music.png'
+			i = i+1
 
 	up_left = music_array[0]
 	up_mid = music_array[1]
@@ -176,7 +176,7 @@ def getMusic(matrix, debug):
 #  - Sat. or more like brightness, and val. is more like lightness  #
 #####################################################################
 
-colors = numpy.array(get_colors(get_image('Images\\test.jpg'), 9))
+colors = numpy.array(get_colors(get_image('Images\\httyd.jpg'), 9))
 print(colors.reshape(3,3,3))
 
-getMusic(colors, True)
+getMusic(colors, False)
