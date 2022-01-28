@@ -32,9 +32,9 @@ def get_colors(image, number_of_colors):
 	return hsv
 
 def merge_horizontal(file1, file2, file3):
-    image1 = Image.open(file1)
-    image2 = Image.open(file2)
-    image3 = Image.open(file3)
+    image1 = open(file1)
+    image2 = open(file2)
+    image3 = open(file3)
 
     (width1, height1) = image1.size
     (width2, height2) = image2.size
@@ -50,9 +50,9 @@ def merge_horizontal(file1, file2, file3):
     result.save('output.jpg')
     return result
 def merge_vertical(file1, file2, file3):
-    image1 = Image.open(file1)
-    image2 = Image.open(file2)
-    image3 = Image.open(file3)
+    image1 = open(file1)
+    image2 = open(file2)
+    image3 = open(file3)
 
     (width1, height1) = image1.size
     (width2, height2) = image2.size
@@ -84,16 +84,14 @@ def getMusic(matrix, debug):
 		i = 0
 		for x in matrix:
 			if (x[1] < 30):
-				if (0 < x[2] <= 20):
+				if (0 < x[2] <= 25):
 					music_array[i] = 'Sheetmusic\\dronea.jpg'
-				if (20 < x[2] <= 40):
+				if (25 < x[2] <= 50):
 					music_array[i] = 'Sheetmusic\\droneb.jpg'
-				if (40 < x[2] <= 60):
+				if (50 < x[2] <= 75):
 					music_array[i] = 'Sheetmusic\\dronec.jpg'
-				if (60 < x[2] <= 80):
+				if (75 < x[2] <= 100):
 					music_array[i] = 'Sheetmusic\\droned.jpg'
-				if (80 < x[2] <= 100):
-					music_array[i] = 'Sheetmusic\\dronee.jpg'
 			else:
 				if (0 < x[0] <= 15 or 350 < x[0] <= 360):
 					music_array[i] = 'Sheetmusic\\RED.jpg'
