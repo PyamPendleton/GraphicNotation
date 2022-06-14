@@ -165,7 +165,6 @@ def getMusic(matrix, debug):
 
 
 
-
 #####################################################################
 # HSV                                                               #
 # Greyscale occurs when S = 0                                       #
@@ -176,7 +175,16 @@ def getMusic(matrix, debug):
 #  - Sat. or more like brightness, and val. is more like lightness  #
 #####################################################################
 
-colors = numpy.array(get_colors(get_image('httyd\\test.jpg'), 9))
+# bright and dark
+# saturation = vol?
+# find a way to restablish a key center for vocalist(s)
+
+# Blue - water sounds - Adi
+# Grey - Fire crackling
+
+
+
+colors = numpy.array(get_colors(get_image('Images\\forest.jpg'), 9))
 print(colors.reshape(3,3,3))
 
 getMusic(colors, True)
